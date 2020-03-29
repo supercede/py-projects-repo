@@ -10,6 +10,8 @@ import json
 import os
 
 movies = []
+
+
 def create_movie_file():
     global movies
     check_file = os.path.exists('movies.json')
@@ -24,10 +26,12 @@ def save_movie_file(content):
     with open('movies.json', 'w', encoding='utf-8') as movies_file:
         json.dump(content, movies_file, ensure_ascii=False, indent=4)
 
+
 def check_valid_year(year):
     while not year.isdigit():
         year = input('Please enter a valid year: ')
     return year
+
 
 def create_movie():
     movie = {}
@@ -50,8 +54,11 @@ def create_movie():
 
 
 def view_movies():
-    [print(movie) for movie in movies]
-    print()
+    if len(movies) == 0:
+        print('There is no movie in your collection\n')
+    else:
+        [print(movie) for movie in movies]
+        print()
     controller()
 
 
@@ -75,12 +82,11 @@ def search_movies():
 
 
 def controller():
-    command = input(
-        "Enter 'a' to add a movie\n 'l' to see your movies\n 's' to search movies\n 'q' to close the program \n")
+    command_str = "Enter 'a' to add a movie\n 'l' to see your movies\n 's' to search movies\n 'q' to close the program \n"
+    command = input(command_str)
 
     while (command not in ['a', 'l', 's', 'q']):
-        command = input(
-            "Invalid selection. Enter 'a' to add a movie\n 'l' to see your movies\n 's' to search movies\n 'q' to close the program \n")
+        command = input(f"Invalid selection. {command_str}")
 
     if command == 'a':
         create_movie()
