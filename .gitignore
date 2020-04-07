@@ -1,4 +1,8 @@
 .git
 */.vscode
+.vscode
 tuts/
 */movies.json
+*/__pycache__
+__pycache__
+*/.idea
